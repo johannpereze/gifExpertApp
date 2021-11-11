@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# GifExpert
+
+A pretty ugly gifs app. Live version: [click here](https://johannpereze.github.io/gifExpertApp/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
