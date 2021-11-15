@@ -10,8 +10,3 @@ import './index.css'
 configure({ adapter: new Adapter() });
 
 ReactDOM.render(<GifExpertApp />, document.getElementById("root"));
-
-
-
-
-
