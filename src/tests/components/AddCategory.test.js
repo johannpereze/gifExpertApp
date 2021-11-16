@@ -46,26 +46,26 @@ describe('Pruebas del componente AddCategory', () => {
 
         //1. simular inputchange
         const value = 'Hola Mundo';
-        const inputToChange = wrapper.find('input')
-        inputToChange.simulate('change', {
+        wrapper.find('input').simulate('change', {
             target: {
                 value: value
             }
         })
 
-        const inputBefore = wrapper.find("input");
-        expect(inputBefore.prop("value")).toBe(value);
+        expect(wrapper.find("input").prop("value")).toBe(value);
 
         //2. Simular el submit
-        const submit = wrapper.find('form');
-        submit.simulate('submit', {
+        wrapper.find('form').simulate('submit', {
             preventDefault: jest.fn()
         })
 
+        //3. setCtaegories se debe haber llamado 1 vez
         expect(setCategories).toBeCalled()
+        expect(setCategories).toHaveBeenCalledTimes(1)
+        expect(setCategories).toHaveBeenCalledWith(expect.any(Function)) //Así me aseguro que le hayan pasado una función y no otra cosa
 
-        const inputAftere = wrapper.find("input");
-        expect(inputAftere.prop("value")).toBe('');
+        //4. el valor del input debe ser ""
+        expect(wrapper.find("input").prop("value")).toBe('');
 
     })
 
