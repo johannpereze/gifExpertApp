@@ -3,9 +3,14 @@ import { shallow } from 'enzyme'
 
 describe('Pruebas del componente AddCategory', () => {
 
-    const setCategories = () => { }
+    const setCategories = jest.fn()
 
-    const wrapper = shallow(<AddCategory setCategories={setCategories} />)
+    let wrapper = shallow(<AddCategory setCategories={setCategories} />); //Lo dejo duplicado para no perder el tipado
+
+    beforeEach(() => {
+        jest.clearAllMocks() //realmente no cambia nada en este caso
+        wrapper = shallow(<AddCategory setCategories={setCategories} />)
+    })
 
     test('Debería devolver el snapshot correctamente', () => {
 
@@ -30,8 +35,41 @@ describe('Pruebas del componente AddCategory', () => {
 
     })
 
+    test('No debe de postear la información con submit', () => {
+
+        wrapper.find('form').simulate('submit', { preventDefault() { } })
+
+        expect(setCategories).not.toHaveBeenCalled()
+    })
+
+    test('debe de llamar el setCategories y limpiar la caja de texto', () => {
+
+        //1. simular inputchange
+        const value = 'Hola Mundo';
+        const inputToChange = wrapper.find('input')
+        inputToChange.simulate('change', {
+            target: {
+                value: value
+            }
+        })
+
+        const inputBefore = wrapper.find("input");
+        expect(inputBefore.prop("value")).toBe(value);
+
+        //2. Simular el submit
+        const submit = wrapper.find('form');
+        submit.simulate('submit', {
+            preventDefault: jest.fn()
+        })
+
+        expect(setCategories).toBeCalled()
+
+        const inputAftere = wrapper.find("input");
+        expect(inputAftere.prop("value")).toBe('');
+
+    })
+
 
 })
 
 
-// const inputForm = wrapper.find('form')
