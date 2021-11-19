@@ -4,7 +4,7 @@ export const getGifs = async (category) => {
 
   const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(
     category
-  )}&limit=10&api_key=${REACT_APP_GIPHY_API_KEY}`;
+  )}&limit=10&api_key=${REACT_APP_GIPHY_API_KEY}`; //Para que pase la prueba tengo que poner la api key directamente sin variable de entorno
 
   const resp = await fetch(url);
 
