@@ -69,6 +69,7 @@ describe('Pruebas del componente AddCategory', () => {
 
     })
 
+    
 
 })
 

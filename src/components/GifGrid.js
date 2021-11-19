@@ -3,6 +3,7 @@
 
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifGridItem } from "./GifGridItem";
+import PropTypes from "prop-types"
 require("dotenv").config();
 
 export const GifGrid = ({ category }) => {
@@ -20,3 +21,8 @@ export const GifGrid = ({ category }) => {
     </>
   );
 };
+
+
+GifGrid.prototypes ={
+  category: PropTypes.string.isRequired
+}
